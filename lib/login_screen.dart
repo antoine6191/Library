@@ -9,4 +9,10 @@ class LoginScreen extends StatefulWidget {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
+  }
+
 }
