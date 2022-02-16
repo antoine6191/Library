@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:library_exercice/screens/book_creation_screen.dart';
 import 'package:library_exercice/screens/login_screen.dart';
 import 'package:library_exercice/screens/register_screen.dart';
 import 'screens/books_list.dart';
@@ -17,11 +18,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor:  Color(0xFF3CB6D3),
+        primaryColorDark: Colors.black,
+        primaryColorLight: Colors.grey
+      ),
       routes: {
         '/': (context) => BooksList(),
         LoginScreen.route:(context) => LoginScreen(),
         BooksList.route:(context) => BooksList(),
         '/register': (context) => RegisterScreen(),
+        '/book': (context) => BookCreationScreen(),
     },
       initialRoute: '/',
     );

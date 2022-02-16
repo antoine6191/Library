@@ -5,12 +5,11 @@ class BookService {
   final CollectionReference _collectionReference = FirebaseFirestore.instance
       .collection('books');
 
-  addBook() {
-    Book book = Book(title: 'title', description: 'description');
-    _collectionReference.add(book.toJson());
+  Future<void> addBook(Book book){
+    return _collectionReference.add(book.toJson());
   }
 
-  findAll() {
+  Future<List<Book>> findAll() {
     return _collectionReference
         .get()
         .then((value) =>
