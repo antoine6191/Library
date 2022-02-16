@@ -20,9 +20,11 @@ class BooksList extends StatelessWidget {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          backgroundColor: Colors.green,
+          backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: Colors.white,
-          onPressed: null,
+          onPressed: (){
+            Navigator.pushNamed(context, '/book');
+          },
         ),
         body: SingleChildScrollView(
           child: Column(
