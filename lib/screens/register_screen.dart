@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:library_exercice/services/user_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const route = "/register";
@@ -16,6 +17,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final UserService _userService = UserService();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
             ),
             TextFormField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'E-mail'),
+              decoration: InputDecoration(labelText: 'Mot de passe'),
               validator: (value) => value!.isEmpty ? 'Entrez votre mdp' : null,
             ),
             SizedBox(height: 50.0,),
@@ -57,8 +59,9 @@ class _RegisterScreenState extends State<RegisterScreen>{
                 if (_formKey.currentState!.validate()) {
                   _validate();
                   setState(() {
-                    loggedIn = true;
-                    name = _nameController.text;
+                    _userService.addUser(_nameController.text, _passwordController.text);
+                    Navigator.pushNamed(context, '/listBook');
+
                   });
                 }
               },

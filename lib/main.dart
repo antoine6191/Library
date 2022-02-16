@@ -3,6 +3,7 @@ import 'package:library_exercice/screens/book_creation_screen.dart';
 import 'package:library_exercice/screens/login_screen.dart';
 import 'package:library_exercice/screens/register_screen.dart';
 import 'screens/books_list.dart';
+import 'package:library_exercice/barcode/barcode_scan.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -24,9 +25,9 @@ class MyApp extends StatelessWidget {
         primaryColorLight: Colors.grey
       ),
       routes: {
-        '/': (context) => BooksList(),
+        '/': (context) => LoginScreen(),
         LoginScreen.route:(context) => LoginScreen(),
-        BooksList.route:(context) => BooksList(),
+        '/listBook':(context) => BooksList(),
         '/register': (context) => RegisterScreen(),
         '/book': (context) => BookCreationScreen(),
     },

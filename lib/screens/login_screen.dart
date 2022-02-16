@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:library_exercice/services/user_service.dart';
+
+import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = "/login";
@@ -16,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final UserService _userService = UserService();
 
   @override
   void initState() {
@@ -51,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextFormField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'E-mail'),
+              decoration: InputDecoration(labelText: 'Mot de passe'),
               validator: (value) => value!.isEmpty ? 'Entrez votre mdp' : null,
             ),
             SizedBox(height: 50.0,),
@@ -65,10 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _validate();
-                      setState(() {
-                        loggedIn = true;
-                        name = _nameController.text;
-                      });
+
                     }
                   },
                   child: const Text('Submit'),
@@ -90,14 +91,24 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _validate() {
+  void _validate() async {
     final form = _formKey.currentState;
     if (!form!.validate()) {
       return;
     }
     final name = _nameController.text;
-    final email = _passwordController.text;
+    final mdp = _passwordController.text;
 
+    var userInBdd = _userService.findOne(name);
+    if(mdp == userInBdd.mdp){
+      setState(() {
+        loggedIn = true;
+        Navigator.pushNamed(context, '/listBook');
+
+      });
+    } else {
+      _passwordController.text = "Bad PASSWORD";
+    }
     /*Navigator.of(context).pushReplacementNamed(
       StopWatch.route,
       arguments: name,
