@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:library_exercice/books_list.dart';
 import 'login_screen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -16,11 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => LoginScreen(),
+        '/': (context) => BooksList(),
         LoginScreen.route:(context) => LoginScreen(),
         BooksList.route:(context) => BooksList()
       },
-      initialRoute: '/books',
+      initialRoute: '/',
     );
   }
 }
