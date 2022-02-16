@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:library_exercice/services/user_service.dart';
+
+import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = "/login";
@@ -16,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen>{
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final UserService _userService = UserService();
 
 
   @override
@@ -46,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen>{
             ),
             TextFormField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'E-mail'),
+              decoration: InputDecoration(labelText: 'Mot de passe'),
               validator: (value) => value!.isEmpty ? 'Entrez votre mdp' : null,
             ),
             ElevatedButton(
@@ -58,7 +62,6 @@ class _LoginScreenState extends State<LoginScreen>{
                   _validate();
                   setState(() {
                     loggedIn = true;
-                    name = _nameController.text;
                   });
                 }
               },
@@ -78,13 +81,16 @@ class _LoginScreenState extends State<LoginScreen>{
     );
   }
 
-  void _validate() {
+  void _validate() async {
     final form = _formKey.currentState;
     if(!form!.validate()){
       return;
     }
     final name = _nameController.text;
     final email = _passwordController.text;
+
+    var test = await _userService.findOne(name);
+    print(test.name);
 
     /*Navigator.of(context).pushReplacementNamed(
       StopWatch.route,
