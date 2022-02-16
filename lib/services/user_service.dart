@@ -6,7 +6,7 @@ class UserService {
       FirebaseFirestore.instance.collection('users');
 
   addUser(String name, String mdp) {
-    User user = User(name: name, mdp: "test");
+    User user = User(name: name, mdp: mdp);
     _collectionReference.add(user.toJson());
   }
 
