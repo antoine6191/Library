@@ -21,6 +21,8 @@ class BookCreationScreen extends StatelessWidget {
           key: _formKey,
           child: Column(
             children: [
+              Image.asset('assets/cesi.png', width: 500.0,),
+              SizedBox(height: 50.0,),
               TextFormField(
                 decoration: InputDecoration(hintText: 'Titre'),
                 controller: _titleController,
@@ -29,6 +31,9 @@ class BookCreationScreen extends StatelessWidget {
                       ? 'veuiller entrer un nom'
                       : _titleController.text = text;
                 },
+              ),
+              SizedBox(
+                height: 20.0,
               ),
               TextFormField(
                 decoration: InputDecoration(hintText: 'Description'),
@@ -39,6 +44,9 @@ class BookCreationScreen extends StatelessWidget {
                       : _descriptionController.text = text;
                 },
               ),
+              SizedBox(
+                height: 20.0,
+              ),
               TextFormField(
                 decoration: InputDecoration(hintText: 'Genre'),
                 controller: _genreController,
@@ -48,6 +56,9 @@ class BookCreationScreen extends StatelessWidget {
                       : _genreController.text = text;
                 },
               ),
+              SizedBox(
+                height: 20.0,
+              ),
               TextFormField(
                 decoration: InputDecoration(hintText: 'Numéro Isbn'),
                 controller: _numeroIsbnController,
@@ -56,6 +67,9 @@ class BookCreationScreen extends StatelessWidget {
                       ? 'veuiller entrer un nom'
                       : _numeroIsbnController.text = text;
                 },
+              ),
+              SizedBox(
+                height: 20.0,
               ),
               TextFormField(
                 decoration: InputDecoration(hintText: 'Numéro code barre'),

@@ -58,7 +58,10 @@ class BooksList extends StatelessWidget {
                                   subtitle: Text(book.description),
                                   leading: Icon(Icons.book, color: Theme.of(context).primaryColor,),
                                   children: [
-                                    Text(book.description)
+                                    Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Text(book.description),
+                                    )
                                   ],
                                 ),
                               ),
