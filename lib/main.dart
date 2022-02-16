@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:library_exercice/barcode/barcode_scan.dart';
 import 'package:library_exercice/register_screen.dart';
 import 'login_screen.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => RegisterScreen()},
 
       initialRoute: '/',
+      // home: BarcodeScan(),
     );
   }
 }
