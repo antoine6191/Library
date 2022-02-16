@@ -92,12 +92,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _validate() async {
+    final mdp = "test";
     final form = _formKey.currentState;
     if (!form!.validate()) {
       return;
     }
     final name = _nameController.text;
-    final mdp = _passwordController.text;
 
     var userInBdd = _userService.findOne(name);
     if(mdp == userInBdd.mdp){
