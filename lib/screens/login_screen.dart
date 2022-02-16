@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:library_exercice/services/book_service.dart';
+import 'package:library_exercice/services/user_service.dart';
+
+import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = "/login";
@@ -17,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen>{
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final BookService _bookService = BookService();
+  final UserService _userService = UserService();
 
 
   @override
@@ -60,7 +62,6 @@ class _LoginScreenState extends State<LoginScreen>{
                   _validate();
                   setState(() {
                     loggedIn = true;
-                    name = _nameController.text;
                   });
                 }
               },
@@ -87,6 +88,14 @@ class _LoginScreenState extends State<LoginScreen>{
     }
     final name = _nameController.text;
     final email = _passwordController.text;
+    print(email);
+    FutureBuilder(
+      future: _userService.findOne(name),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        User user = snapshot.data;
+        print('${user.mdp}, ${user.name}');
+      return Text(user.mdp);
+    },);
 
     /*Navigator.of(context).pushReplacementNamed(
       StopWatch.route,
