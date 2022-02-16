@@ -55,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                   _validate();
                   setState(() {
                     _userService.addUser(_nameController.text, _passwordController.text);
-                    Navigator.pushNamed(context, '/');
+                    Navigator.pushNamed(context, '/listBook');
 
                   });
                 }

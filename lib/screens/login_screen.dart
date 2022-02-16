@@ -60,9 +60,6 @@ class _LoginScreenState extends State<LoginScreen>{
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   _validate();
-                  setState(() {
-                    loggedIn = true;
-                  });
                 }
               },
               child: const Text('Submit'),
@@ -87,11 +84,18 @@ class _LoginScreenState extends State<LoginScreen>{
       return;
     }
     final name = _nameController.text;
-    final email = _passwordController.text;
+    final mdp = _passwordController.text;
 
-    var test = await _userService.findOne(name);
-    print(test.name);
+    var userInBdd = _userService.findOne(name);
+    if(mdp == userInBdd.mdp){
+      setState(() {
+        loggedIn = true;
+        Navigator.pushNamed(context, '/listBook');
 
+      });
+    } else {
+      _passwordController.text = "Bad PASSWORD";
+    }
     /*Navigator.of(context).pushReplacementNamed(
       StopWatch.route,
       arguments: name,
