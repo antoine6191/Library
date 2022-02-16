@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:library_exercice/screens/login_screen.dart';
+import 'package:library_exercice/screens/register_screen.dart';
+import 'screens/books_list.dart';
 import 'package:library_exercice/barcode/barcode_scan.dart';
-import 'package:library_exercice/register_screen.dart';
-import 'login_screen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -18,11 +19,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => LoginScreen(),
-        '/register': (context) => RegisterScreen()},
-
+        '/': (context) => BooksList(),
+        LoginScreen.route:(context) => LoginScreen(),
+        BooksList.route:(context) => BooksList(),
+        '/register': (context) => RegisterScreen(),
+    },
       initialRoute: '/',
-      // home: BarcodeScan(),
     );
   }
 }
