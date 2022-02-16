@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:library_exercice/books_list.dart';
+import 'package:library_exercice/register_screen.dart';
 import 'login_screen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => BooksList(),
         LoginScreen.route:(context) => LoginScreen(),
         BooksList.route:(context) => BooksList()
-      },
+        '/register': (context) => RegisterScreen()},
+    },
       initialRoute: '/',
     );
   }
