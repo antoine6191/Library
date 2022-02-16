@@ -5,8 +5,8 @@ class UserService {
   final CollectionReference _collectionReference =
       FirebaseFirestore.instance.collection('users');
 
-  addUser() {
-    User user = User(name: 'test', mdp: 'test');
+  addUser(String name, String mdp) {
+    User user = User(name: name, mdp: mdp);
     _collectionReference.add(user.toJson());
   }
 
@@ -16,8 +16,8 @@ class UserService {
         }).toList());
   }
 
-  Future<List<User>> findOne(String userName) {
-    return _collectionReference.where("name", isEqualTo: userName).get().then((value){
+  User findOne(String userName) {
+    return _collectionReference.where("name", isEqualTo: userName).get().first().then((value){
        return value.docs.map((doc) {
        return User.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();

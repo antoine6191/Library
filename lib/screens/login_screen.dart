@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen>{
             ),
             TextFormField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'E-mail'),
+              decoration: InputDecoration(labelText: 'Mot de passe'),
               validator: (value) => value!.isEmpty ? 'Entrez votre mdp' : null,
             ),
             ElevatedButton(
@@ -81,21 +81,16 @@ class _LoginScreenState extends State<LoginScreen>{
     );
   }
 
-  void _validate() {
+  void _validate() async {
     final form = _formKey.currentState;
     if(!form!.validate()){
       return;
     }
     final name = _nameController.text;
     final email = _passwordController.text;
-    print(email);
-    FutureBuilder(
-      future: _userService.findOne(name),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        User user = snapshot.data;
-        print('${user.mdp}, ${user.name}');
-      return Text(user.mdp);
-    },);
+
+    var test = await _userService.findOne(name);
+    print(test.name);
 
     /*Navigator.of(context).pushReplacementNamed(
       StopWatch.route,
