@@ -23,8 +23,6 @@ class _LoginScreenState extends State<LoginScreen>{
   @override
   void initState() {
     super.initState();
-    _bookService.addBook();
-    _bookService.findAll();
   }
   @override
   Widget build(BuildContext context) {
