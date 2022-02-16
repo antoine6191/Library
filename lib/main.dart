@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primaryColorLight: Colors.grey
       ),
       routes: {
-        '/': (context) => BooksList(),
+        '/': (context) => LoginScreen(),
         LoginScreen.route:(context) => LoginScreen(),
         BooksList.route:(context) => BooksList(),
         '/register': (context) => RegisterScreen(),

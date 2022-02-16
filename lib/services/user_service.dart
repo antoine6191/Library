@@ -17,10 +17,7 @@ class UserService {
   }
 
   User findOne(String userName) {
-    return _collectionReference.where("name", isEqualTo: userName).get().first().then((value){
-       return value.docs.map((doc) {
-       return User.fromJson(doc.data() as Map<String, dynamic>);
-      }).toList();
-    });
-    }
+    return new User(name: "test", mdp: 'test');
+    //return await _collectionReference.where("name", isEqualTo: userName).get().asStream();}
+
 }
