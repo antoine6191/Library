@@ -19,5 +19,5 @@ class UserService {
   User findOne(String userName) {
     return new User(name: "test", mdp: 'test');
     //return await _collectionReference.where("name", isEqualTo: userName).get().asStream();}
-
+  }
 }
