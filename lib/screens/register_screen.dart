@@ -21,6 +21,8 @@ class _RegisterScreenState extends State<RegisterScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          leading: Image.asset('assets/cesi.png', width: 50.0,),
+        backgroundColor: Theme.of(context).primaryColor,
           title: Text("Register")),
       body: Center(
           child: _buildLoginForm()),
@@ -34,6 +36,8 @@ class _RegisterScreenState extends State<RegisterScreen>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset('assets/cesi.png', width: 500.0,),
+            SizedBox(height: 50.0,),
             TextFormField(
               controller: _nameController,
               decoration: InputDecoration(labelText: "Nom d'utilisateur"),
@@ -44,9 +48,10 @@ class _RegisterScreenState extends State<RegisterScreen>{
               decoration: InputDecoration(labelText: 'E-mail'),
               validator: (value) => value!.isEmpty ? 'Entrez votre mdp' : null,
             ),
+            SizedBox(height: 50.0,),
             ElevatedButton(
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                  backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
                   foregroundColor: MaterialStateProperty.all(Colors.white)),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {

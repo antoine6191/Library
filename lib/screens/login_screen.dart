@@ -7,7 +7,7 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen>{
+class _LoginScreenState extends State<LoginScreen> {
   bool loggedIn = false;
 
   String? name;
@@ -17,20 +17,23 @@ class _LoginScreenState extends State<LoginScreen>{
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: 50.0,
+          leading: Image.asset('assets/cesi.png'),
+          backgroundColor: Theme.of(context).primaryColor,
           title: Text("Login")),
-      body: Center(
-          child: _buildLoginForm()),
+      body: Center(child: _buildLoginForm()),
     );
   }
+
   Widget _buildLoginForm() {
     return Form(
       key: _formKey,
@@ -39,6 +42,8 @@ class _LoginScreenState extends State<LoginScreen>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset('assets/cesi.png', width: 500.0,),
+            SizedBox(height: 50.0,),
             TextFormField(
               controller: _nameController,
               decoration: InputDecoration(labelText: "Nom d'utilisateur"),
@@ -49,29 +54,36 @@ class _LoginScreenState extends State<LoginScreen>{
               decoration: InputDecoration(labelText: 'E-mail'),
               validator: (value) => value!.isEmpty ? 'Entrez votre mdp' : null,
             ),
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
-                  foregroundColor: MaterialStateProperty.all(Colors.white)),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _validate();
-                  setState(() {
-                    loggedIn = true;
-                    name = _nameController.text;
-                  });
-                }
-              },
-              child: const Text('Submit'),
-            ),ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red),
-                  foregroundColor: MaterialStateProperty.all(Colors.white)),
-              onPressed: () {
-                Navigator.pushNamed(context, '/register');
-              },
-              child: const Text('Register'),
-            ),
+            SizedBox(height: 50.0,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                      foregroundColor: MaterialStateProperty.all(Colors.white)),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _validate();
+                      setState(() {
+                        loggedIn = true;
+                        name = _nameController.text;
+                      });
+                    }
+                  },
+                  child: const Text('Submit'),
+                ),
+                SizedBox(width: 25.0,),
+                OutlinedButton(
+                  style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(Colors.white)),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/register');
+                  },
+                  child: const Text('Register', style: TextStyle(color:  Color(0xFF3CB6D3)),
+                ),)
+              ],
+            )
           ],
         ),
       ),
@@ -80,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen>{
 
   void _validate() {
     final form = _formKey.currentState;
-    if(!form!.validate()){
+    if (!form!.validate()) {
       return;
     }
     final name = _nameController.text;
