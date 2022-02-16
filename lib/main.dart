@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:library_exercice/register_screen.dart';
 import 'login_screen.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -16,8 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => LoginScreen(),
-        LoginScreen.route:(context) => LoginScreen()
-      },
+        '/register': (context) => RegisterScreen()},
+
       initialRoute: '/',
     );
   }

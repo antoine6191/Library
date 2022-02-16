@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const route = "/login";
+class RegisterScreen extends StatefulWidget {
+  static const route = "/register";
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen>{
+class _RegisterScreenState extends State<RegisterScreen>{
   bool loggedIn = false;
 
   String? name;
@@ -16,20 +16,12 @@ class _LoginScreenState extends State<LoginScreen>{
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final BookService _bookService = BookService();
 
-
-  @override
-  void initState() {
-    super.initState();
-    _bookService.addBook();
-    _bookService.findAll();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Login")),
+          title: Text("Register")),
       body: Center(
           child: _buildLoginForm()),
     );
@@ -65,16 +57,8 @@ class _LoginScreenState extends State<LoginScreen>{
                   });
                 }
               },
-              child: const Text('Submit'),
-            ),ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red),
-                  foregroundColor: MaterialStateProperty.all(Colors.white)),
-              onPressed: () {
-                Navigator.pushNamed(context, '/register');
-              },
               child: const Text('Register'),
-            ),
+            )
           ],
         ),
       ),
