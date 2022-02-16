@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:library_exercice/services/book_service.dart';
-import 'package:library_exercice/services/user_service.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = "/login";
@@ -19,12 +18,11 @@ class _LoginScreenState extends State<LoginScreen>{
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final BookService _bookService = BookService();
-  final UserService _userService = UserService();
+
 
   @override
   void initState() {
     super.initState();
-
   }
   @override
   Widget build(BuildContext context) {
@@ -58,8 +56,6 @@ class _LoginScreenState extends State<LoginScreen>{
                   backgroundColor: MaterialStateProperty.all(Colors.green),
                   foregroundColor: MaterialStateProperty.all(Colors.white)),
               onPressed: () {
-                var test = _userService.findOne("test");
-                print(test);
                 if (_formKey.currentState!.validate()) {
                   _validate();
                   setState(() {
@@ -68,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen>{
                   });
                 }
               },
-              child: const Text('Login'),
+              child: const Text('Submit'),
             ),ElevatedButton(
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.red),
