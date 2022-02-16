@@ -6,8 +6,11 @@ class BookService{
 
   addBook(){
     Book book = Book(title: 'title', description: 'description');
-    _collectionReference.add(book);
+    _collectionReference.add(book.toJson());
   }
+  findAll(){
+    _collectionReference.get().then((value) => value.docs.map((e) => e.data()).toList());
 
+  }
 
 }
