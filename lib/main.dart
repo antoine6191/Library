@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginScreen(),
         LoginScreen.route:(context) => LoginScreen(),
-        BooksList.route:(context) => BooksList(),
+        '/listBook':(context) => BooksList(),
         '/register': (context) => RegisterScreen(),
         '/book': (context) => BookCreationScreen(),
     },
