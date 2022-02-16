@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/listBook':(context) => BooksList(),
         '/register': (context) => RegisterScreen(),
         '/book': (context) => BookCreationScreen(),
+        '/barcode': (context) => BarcodeScan(),
     },
       initialRoute: '/',
     );

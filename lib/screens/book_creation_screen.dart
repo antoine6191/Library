@@ -100,7 +100,21 @@ class BookCreationScreen extends StatelessWidget {
                       },
                       child: Text('Valider'))
                 ],
-              )
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/barcode');
+                  },
+                  child: Text(
+                    'Ajouter un code',
+                    style: TextStyle(color: Theme.of(context).primaryColor),
+                  )),
+              SizedBox(
+                width: 20.0,
+              ),
             ],
           ),
         ),
