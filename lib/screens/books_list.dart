@@ -27,36 +27,49 @@ class BooksList extends StatelessWidget {
           },
         ),
         body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Liste des livres'),
-              FutureBuilder<List<Book>>(
-                  future: _getAllBooks(),
-                  builder: (BuildContext context, AsyncSnapshot data) {
-                    if (data.hasError) {
-                      return Text('Erreur de chargement de la liste');
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/cesi.png', width: 200.0,),
+                SizedBox(height: 50.0,),
+                Center(child: Text('Liste des livres', style: TextStyle(fontSize: 20.0, color: Theme.of(context).primaryColor),)),
+                FutureBuilder<List<Book>>(
+                    future: _getAllBooks(),
+                    builder: (BuildContext context, AsyncSnapshot data) {
+                      if (data.hasError) {
+                        return Text('Erreur de chargement de la liste');
+                      }
+                      if (data.connectionState == ConnectionState.waiting) {
+                        return Text('chargement...');
+                      }
+                      List<Book> listBooks = data.data;
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: listBooks.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            Book book = listBooks[index];
+                            return Card(
+                              child: Padding(
+                                padding:  EdgeInsets.only(left: 28.0, right: 28.0),
+                                child: ExpansionTile(
+                                  title: Text(book.title),
+                                  subtitle: Text(book.description),
+                                  leading: Icon(Icons.book, color: Theme.of(context).primaryColor,),
+                                  children: [
+                                    Text(book.description)
+                                  ],
+                                ),
+                              ),
+                            );
+                          }
+                      );
                     }
-                    if (data.connectionState == ConnectionState.waiting) {
-                      return Text('chargement...');
-                    }
-                    List<Book> listBooks = data.data;
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: listBooks.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          Book book = listBooks[index];
-                          return ListTile(
-                            title: Text(book.title),
-                            subtitle: Text(book.description),
+                ),
 
-                          );
-                        }
-                    );
-                  }
-              ),
-
-            ],
+              ],
+            ),
           ),
         )
 
